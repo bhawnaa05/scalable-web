@@ -1,0 +1,2 @@
+src/app/dashboard/page.tsx(220,17): error TS2322: Type '{ isOpen: boolean; onClose: () => void; onSubmit: (data: { title: string; status: "todo" | "in-progress" | "done"; priority: "low" | "medium" | "high"; description?: string | undefined; }) => Promise<...>; initialData: Task | null; isLoading: boolean; }' is not assignable to type 'IntrinsicAttributes & TaskModalProps'.
+  Property 'isOpen' does not exist on type 'IntrinsicAttributes & TaskModalProps'. Did you mean 'open'?
