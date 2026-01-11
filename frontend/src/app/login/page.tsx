@@ -7,6 +7,7 @@ import { Mail, Lock, Eye, EyeOff, Sparkles, ArrowRight } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { toast } from 'react-hot-toast';
 
 const formSchema = z.object({
     email: z.string().email('Please enter a valid email'),
@@ -30,8 +31,11 @@ export default function LoginPage() {
     const onSubmit = async (data: FormData) => {
         try {
             await login(data.email, data.password);
+            toast.success('Successfully logged in!');
         } catch (error) {
             console.error('Login failed:', error);
+            const message = error instanceof Error ? error.message : 'Invalid email or password';
+            toast.error(message);
         }
     };
 

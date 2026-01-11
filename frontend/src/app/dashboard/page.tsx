@@ -15,6 +15,7 @@ import {
     ClockIcon,
     ArchiveBoxIcon
 } from '@heroicons/react/24/outline';
+import { toast } from 'react-hot-toast';
 
 export default function DashboardPage() {
     const { user } = useAuth();
@@ -34,6 +35,7 @@ export default function DashboardPage() {
             setTasks(data.tasks);
         } catch (error) {
             console.error('Failed to fetch tasks', error);
+            toast.error('Failed to load tasks');
         } finally {
             setIsLoading(false);
         }
@@ -59,8 +61,10 @@ export default function DashboardPage() {
         try {
             await apiMethods.deleteTask(taskId);
             setTasks(tasks.filter(t => t._id !== taskId));
+            toast.success('Task deleted');
         } catch (error) {
             console.error('Failed to delete task', error);
+            toast.error('Failed to delete task');
         }
     };
 
@@ -75,8 +79,10 @@ export default function DashboardPage() {
                 setTasks([response.task, ...tasks]);
             }
             setIsModalOpen(false);
+            toast.success(selectedTask ? 'Task updated' : 'Task created');
         } catch (error) {
             console.error(error);
+            toast.error('Failed to save task');
         } finally {
             setIsSaving(false);
         }

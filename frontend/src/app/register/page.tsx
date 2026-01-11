@@ -7,6 +7,7 @@ import { User, Mail, Lock, Eye, EyeOff, Sparkles, ArrowRight } from 'lucide-reac
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import { toast } from 'react-hot-toast';
 
 const formSchema = z.object({
     name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -35,8 +36,11 @@ export default function RegisterPage() {
     const onSubmit = async (data: FormData) => {
         try {
             await registerAuth(data.name, data.email, data.password);
+            toast.success('Account created successfully!');
         } catch (error) {
             console.error('Registration failed:', error);
+            const message = error instanceof Error ? error.message : 'Registration failed. Please try again.';
+            toast.error(message);
         }
     };
 

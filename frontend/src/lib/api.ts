@@ -1,7 +1,9 @@
 import { Task } from '@/types/task';
 import { TaskFormData } from '@/lib/validation';
 
-const API_BASE = '/api/tasks';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+const API_BASE = `${API_URL}/api/tasks`;
+
 const getAuthHeaders = () => {
     const token = localStorage.getItem('token');
     return {
@@ -85,7 +87,7 @@ export const apiMethods = {
     },
 
     login: async (email: string, password: string): Promise<AuthResponse> => {
-        const response = await fetch('/api/auth/login', {
+        const response = await fetch(`${API_URL}/api/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ email, password }),
@@ -99,7 +101,7 @@ export const apiMethods = {
     },
 
     register: async (name: string, email: string, password: string): Promise<AuthResponse> => {
-        const response = await fetch('/api/auth/register', {
+        const response = await fetch(`${API_URL}/api/auth/register`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, email, password }),
