@@ -1,0 +1,14 @@
+[dotenv@17.2.3] injecting env (6) from .env -- tip: ΓÜÖ∩╕Å  specify custom .env file path with { path: '/custom/path/.env' }
+1. Connecting to MongoDB...
+2. Connected!
+3. Creating test user object...
+4. Saving user (triggering pre-save hook)...
+!!! TEST FAILED !!!
+Error Name: TypeError
+Error Message: next is not a function
+Stack: TypeError: next is not a function
+    at model.<anonymous> (C:\Users\PC\scalable-web-app\backend\models\User.js:51:5)
+    at async Kareem.execPre (C:\Users\PC\scalable-web-app\backend\node_modules\kareem\index.js:65:24)
+    at async model.$__save (C:\Users\PC\scalable-web-app\backend\node_modules\mongoose\lib\model.js:369:5)
+    at async model.save (C:\Users\PC\scalable-web-app\backend\node_modules\mongoose\lib\model.js:609:5)
+    at async testConnection (C:\Users\PC\scalable-web-app\backend\test-db.js:23:9)
